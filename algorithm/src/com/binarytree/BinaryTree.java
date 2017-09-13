@@ -16,12 +16,14 @@ public class BinaryTree {
 		BinaryTree r3=new BinaryTree(3);
 		BinaryTree r4=new BinaryTree(4);
 		BinaryTree r5=new BinaryTree(5);
+		BinaryTree r6=new BinaryTree(6);
 		
 		root.left=r1;
 		root.right=r2;
 		r1.left=r3;
 		r2.right=r4;
 		r3.right=r5;
+		r5.left=r6;
 		
 		return root;
 	}
