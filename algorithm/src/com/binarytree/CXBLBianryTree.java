@@ -10,13 +10,13 @@ import java.util.Queue;
 public class CXBLBianryTree {
 	public static void main(String[] args) {
 		BinaryTree root=BinaryTree.getInstance();
-		qxbl(root);
+		cxbl(root);
 		
 	}
 	
 	
 	//·ÇµÝ¹é
-	public static void qxbl(BinaryTree root){
+	public static void cxbl(BinaryTree root){
 		Queue<BinaryTree> q=new LinkedList<BinaryTree>();
 		if(root==null)
 			return;
