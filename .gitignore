@@ -1,4 +1,8 @@
 wechat/.vscode/launch.json
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 AES_V1/AES_V1.iml
 AES_V1/.idea/workspace.xml
 AES_V1/.idea/modules.xml
@@ -7,3 +11,10 @@ AES_V1/.idea/encodings.xml
 AES_V1/.idea/copyright/profiles_settings.xml
 AES_V1/.idea/compiler.xml
 AES_V1/.idea/.name
+<<<<<<< Updated upstream
+=======
+=======
+*.iml
+AES_V1/.idea/
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
