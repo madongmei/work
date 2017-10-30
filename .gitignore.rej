@@ -1,0 +1,11 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -1 +1,9 @@
+ wechat/.vscode/launch.json
++AES_V1/AES_V1.iml
++AES_V1/.idea/workspace.xml
++AES_V1/.idea/modules.xml
++AES_V1/.idea/misc.xml
++AES_V1/.idea/encodings.xml
++AES_V1/.idea/copyright/profiles_settings.xml
++AES_V1/.idea/compiler.xml
++AES_V1/.idea/.name

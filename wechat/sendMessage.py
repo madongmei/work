@@ -78,6 +78,7 @@ def getDangerOP():
         conn=connect_db()
         cursor=conn.cursor()
         sql=("select count(*),info from alarm_log where level>=1 and ds=%s group by info" %(str(dt)))
+        #sql=("select count(*),info from alarm_log where level>=1 and ds=%s group by info" %(2017090811))
         logger.info(sql)
         cursor.execute(sql)
         results = cursor.fetchall()
@@ -85,7 +86,7 @@ def getDangerOP():
             for row in results:
                 level = str(row[0])
                 info = str(row[1])
-                msg = u'%s 操作级别: %s, 告警信息: %s\n\n' %(msg, level, info)
+                msg = u'%salarm info: %s\nalarm count: %s\n\n' %(msg, info, level)
         else:
             return None
         conn.commit()
@@ -101,7 +102,7 @@ def getContent():
     info = getDangerOP()
     if info is None:
         return None
-    msg = u'时间: %s\n %s' %(str(dt), info)
+    msg = u'time: %s\n%s' %(str(dt), info)
     logger.info(msg)
     return msg.encode('utf-8')
 
