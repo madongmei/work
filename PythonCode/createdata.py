@@ -1,4 +1,4 @@
-#!/usr/bin/env python  
+#!/usr/bin/python
 # encoding: utf-8   
 """ 
 @version: v1.0 
@@ -8,11 +8,12 @@
 @time: 2017/9/8 22:49 
 """
 
-import MySQLdb
+
 import time
 import logging
 from logging.handlers import RotatingFileHandler
 import random
+import MySQLdb
 
 
 info_dict={0:"common op",1:"warning op",2:"danger op"}
