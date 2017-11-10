@@ -1,5 +1,8 @@
 package com.util.aes;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.KeyException;
 import java.util.Arrays;
 
@@ -108,6 +111,86 @@ public class AES {
 			}
 		}
 	}
+	
+	public char[] aesCipher(int length,char[] input){
+		int divide=length/16;//有多少个16段
+		int remain=length%16;//长度是否是16的整数倍
+		int padNum=0;
+		
+		if(remain!=0)
+		{
+			padNum=16-remain;
+			divide++;
+		}
+		
+		char[] cipher=new char[divide*16];
+		
+		for(int i=0;i<divide;i++){
+			char[] temp=new char[16];
+			for(int j=0;j<16;j++){
+				if((i*16+j)<length){
+					temp[j]=input[i*16+j];
+				}
+				else{
+					if(j==15){
+						temp[j]=(char) padNum;
+					}
+					else{
+						temp[j]=0;
+					}
+				}
+			}
+			
+			char[] out=cipher(temp);
+			for(int j=0;j<16;j++){
+				cipher[i*16+j]=out[j];
+			}
+		}
+		
+		length=divide*16;
+		return cipher;
+	}
+	
+	
+	public char[] aesCipher_v1(int length,char[] input){
+		int divide=length/16;//有多少个16段
+		int remain=length%16;//长度是否是16的整数倍
+		int padNum=0;
+		
+		if(remain!=0)
+		{
+			padNum=16-remain;
+			divide++;
+		}
+		
+		char[] cipher=new char[divide*16];
+		
+		for(int i=0;i<divide;i++){
+			char[] temp=new char[16];
+			for(int j=0;j<16;j++){
+				if((i*16+j)<length){
+					temp[j]=input[i*16+j];
+				}
+				else{
+					if(j==15){
+						temp[j]=(char) padNum;
+					}
+					else{
+						temp[j]=0;
+					}
+				}
+			}
+			
+			char[] out=cipher_v1(temp);
+			for(int j=0;j<16;j++){
+				cipher[i*16+j]=out[j];
+			}
+		}
+		
+		length=divide*16;
+		return cipher;
+	}
+	
 	
 	
 	public char[] cipher(char[] input){
@@ -230,6 +313,47 @@ public class AES {
 		return input;
 	}
 
+	
+	public char[] aesInvCipher(int length,char[] input){
+		int divide=length/16;
+		char[] text=new char[length];
+		for(int i=0;i<divide;i++){
+			char[] temp=new char[16];
+			for(int j=0;j<16;j++){
+				temp[j]=input[i*16+j];
+			}
+			
+			char[] out=invCipher(temp);
+			
+			if(out==null){
+				return out;
+			}
+			
+			for(int j=0;j<16;j++){
+				text[i*16+j]=out[j];
+			}
+		}
+		
+		int count=1;
+		for(int i=1;i<length-1;i++){
+			if(text[length-1]>=16){
+				break;
+			}
+			
+			if(text[length-i-1]==0){
+				count++;
+			}
+		}
+		
+		if(count==length-1){
+			length=length-count;
+		}
+		
+		return text;
+	}
+	
+	
+	
 	public char[] invCipher(char[] input){
 		char state[][]=new char[4][4];
 		int i,r,c;
@@ -259,21 +383,6 @@ public class AES {
 		
 		return input;
 		
-	}
-	
-	
-	public char[] cipher(char[] input,int length){
-		char[] in=input;
-		int i;
-		if(length!=0){
-//			while()
-		}
-		return null;
-	}
-	
-	
-	public char[] invCipher(char[] input,int length){
-		return null;
 	}
 	
 	
@@ -396,5 +505,13 @@ public class AES {
 			}
 		}
 		System.out.println();
+	}
+	
+	public String aesDecode(int len,char[] input) throws UnsupportedEncodingException{
+		return URLDecoder.decode(new String(input).substring(0,len), "UTF-8");
+	}
+	
+	public char[] aesEncoder(String str) throws UnsupportedEncodingException{
+		return URLEncoder.encode(str, "UTF-8").toCharArray();
 	}
 }
