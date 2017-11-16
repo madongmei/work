@@ -37,7 +37,7 @@ public class Main {
 					
 					int len1=input.length;
 					
-					long start1=System.nanoTime();
+					long start1=System.nanoTime()；
 					input=aes.aesCipher(len1,input);
 					long end1=System.nanoTime();
 					print(new String(input),secretpath);
